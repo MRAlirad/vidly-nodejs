@@ -1,10 +1,6 @@
 const {Genre, validate} = require('../models/genre');
-const mongoose = require('mongoose');
-const Joi = require('joi');
 const express = require('express');
 const router = express.Router();
-
-
 
 router.get('/', async (req, res) => {
     res.send(await Genre.find().sort('name'));
@@ -47,7 +43,5 @@ router.get('/:id', async (req, res) => {
 
     res.send(genre);
 });
-
-
 
 module.exports = router;

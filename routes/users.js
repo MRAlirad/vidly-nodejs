@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const {User, validate} = require('../models/user');
 const _ = require('lodash');
 const mongoose = require('mongoose');
@@ -15,6 +16,9 @@ router.post('/', async (req, res) => {
     user = new User(_.pick(req.body, ['name', 'email', 'password']));
 
     _.pick(user, ['name', 'email']);
+
+    const salt = await bcrypt.genSalt(10); // the number of rounds to genereate the salt, the higer the number, the longer to generate , more complex, harder to break
+    user.password = await bcrypt.hash(user.password, salt);
 
     await user.save();
 

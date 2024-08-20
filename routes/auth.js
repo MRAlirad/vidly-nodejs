@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const {User} = require('../models/user');
@@ -18,7 +19,10 @@ router.post('/', async (req, res) => {
     console.log(validPassword);
     if (!validPassword) return res.status(400).send('Invalid email or password');
 
-    res.send(true);
+    // first argument is payload can be string or object
+    // second argument is secret key to create that digital signature 
+    const token = jwt.sign({_id: user._id}, 'jwtPrivateKey');
+    res.send(token);
 });
 
 const validate = (req) => {

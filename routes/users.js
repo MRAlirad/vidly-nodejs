@@ -22,9 +22,9 @@ router.post('/', async (req, res) => {
 
     if (user) return res.status(400).send('User already registered');
 
-    user = new User(_.pick(req.body, ['name', 'email', 'password']));
+    user = new User(_.pick(req.body, ['name', 'email', 'password', 'isAdmin']));
 
-    _.pick(user, ['name', 'email']);
+    _.pick(user, ['name', 'email', 'isAdmin']);
 
     const salt = await bcrypt.genSalt(10); // the number of rounds to genereate the salt, the higer the number, the longer to generate , more complex, harder to break
     user.password = await bcrypt.hash(user.password, salt);
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     await user.save();
 
     const token = user.generateAuthToken();
-    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email', 'isAdmin']));
 });
 
 module.exports = router;

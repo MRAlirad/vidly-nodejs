@@ -22,12 +22,15 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 1024,
     },
+    isAdmin: {
+        type: Boolean,
+    },
 });
 
 userSchema.methods.generateAuthToken = function () {
     // first argument is payload can be string or object
     // second argument is secret key to create that digital signature 
-    return jwt.sign({_id: this._id}, 'jwtPrivateKey');
+    return jwt.sign({_id: this._id, isAdmin: this.isAdmin}, 'jwtPrivateKey');
 };
 
 const User = mongoose.model('User', userSchema);
@@ -37,6 +40,7 @@ const validateUser = (user) => {
         name: Joi.string().min(5).max(50).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(5).max(1024).required(),
+        isAdmin: Joi.bool(),
     });
 
     return schema.validate(user);

@@ -1,23 +1,24 @@
 {
-  "name": "vidly-nodejs",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "config": "^3.3.12",
-    "express": "^4.19.2",
-    "fawn": "^2.1.5",
-    "joi": "^17.13.3",
-    "joi-objectid": "^2.0.0",
-    "jsonwebtoken": "^9.0.2",
-    "lodash": "^4.17.21",
-    "mongoose": "^8.4.4"
-  }
+	"name": "vidly-nodejs",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"server": "node index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"bcrypt": "^5.1.1",
+		"config": "^3.3.12",
+		"express": "^4.19.2",
+		"fawn": "^2.1.5",
+		"joi": "^17.13.3",
+		"joi-objectid": "^2.0.0",
+		"jsonwebtoken": "^9.0.2",
+		"lodash": "^4.17.21",
+		"mongoose": "^8.4.4"
+	}
 }
